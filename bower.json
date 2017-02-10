@@ -1,0 +1,28 @@
+{
+  "name": "brs_49",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Dieu Linh"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "123456"
+  ],
+  "homepage": "https://github.com/TranDieuLinh/brs_49",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "Font-Awesome#^4.7.0",
+    "jquery": "^3.1.1",
+    "ckeditor": "^4.6.2",
+    "metisMenu": "^2.6.2"
+  }
+}

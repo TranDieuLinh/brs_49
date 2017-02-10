@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="Dieu Linh">
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
+    <!-- Bootstrap Core CSS -->
+    <link href='{{ asset('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}' rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href='{{ asset('/bower_components/metisMenu/dist/metisMenu.min.css') }}' rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href='{{ asset('/css/admin.css') }}' rel="stylesheet">
+    <link href='{{ asset('/css/sweetalert.css') }}' rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href='{{ asset('/bower_components/font-awesome/css/font-awesome.min.css') }}' rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="header clearfix custom-line">
+        @yield('header')
+    </div>
+    <div class="">
+        @yield('sidebar-up')
+    </div>
+    <div class="row-l">
+        <div class="row marketing">
+            <div class="col-lg">
+                @yield('sidebar-left')
+            </div>
+            <div class="col-lg">
+                @yield('sidebar-right')
+            </div>
+        </div>
+        <footer class="footer">
+            @yield('footer')
+        </footer>
+    </div> <!-- /container -->
+</div>
+<div class="">
+    @yield('script')
+    <!-- jQuery -->
+    <script src='{{ asset('/bower_components/jquery/dist/jquery.min.js') }}'></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src='{{ asset('/bower_components/bootstrap/dist/js/bootstrap.min.js') }}'></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src='{{ asset('/bower_components/metisMenu/dist/metisMenu.min.js') }}'></script>
+    <!-- Custom Theme JavaScript -->
+    <script src='{{ asset('/js/admin.js') }}'></script>
+</div>
+</body>
+</html>
