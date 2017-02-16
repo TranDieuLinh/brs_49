@@ -357,6 +357,14 @@ table.dataTable thead .sorting:after {
     color: #df8a13;
 }
 
-.row-l.row{
+.row-l.row {
     margin: 20px;
+}
+
+label.error {
+    color: #9c3328;
+}
+
+p.uppercase {
+    text-transform: uppercase;
 }

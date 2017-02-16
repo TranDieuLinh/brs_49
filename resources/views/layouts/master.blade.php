@@ -7,6 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="Dieu Linh">
+    <meta name='csrf-token' content='{{ csrf_token() }}'>
     <link rel="icon" href="{{ asset('favicon.ico') }}">
     <!-- Bootstrap Core CSS -->
     <link href='{{ asset('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}' rel="stylesheet">
@@ -40,8 +41,6 @@
         </footer>
     </div> <!-- /container -->
 </div>
-<div class="">
-    @yield('script')
     <!-- jQuery -->
     <script src='{{ asset('/bower_components/jquery/dist/jquery.min.js') }}'></script>
     <!-- Bootstrap Core JavaScript -->
@@ -49,7 +48,7 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src='{{ asset('/bower_components/metisMenu/dist/metisMenu.min.js') }}'></script>
     <!-- Custom Theme JavaScript -->
-    <script src='{{ asset('/js/admin.js') }}'></script>
-</div>
+    <script src='{{ asset('/js/sweetalert-dev.js') }}'></script>
+    @yield('script')
 </body>
 </html>

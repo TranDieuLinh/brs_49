@@ -2,7 +2,8 @@
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
             <li>
-                <a href="javascript:void(0)"><i class="fa fa-book fa-fw"></i>@lang('sidebar.categories')<span class="fa arrow"></span></a>
+                <a href="javascript:void(0)"><i class="fa fa-book fa-fw"></i>@lang('sidebar.categories')<span
+                            class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="javascript:void(0)">Hài hước truyện cười</a>
@@ -46,7 +47,8 @@
                 <a href="javascript:void(0)"><i class="fa fa-phone fa-fw"></i>@lang('sidebar.contact')</a>
             </li>
             <li>
-                <a href="javascript:void(0)"><i class="fa fa-internet-explorer fa-fw"></i>@lang('sidebar.references')</a>
+                <a href="javascript:void(0)"><i class="fa fa-internet-explorer fa-fw"></i>@lang('sidebar.references')
+                </a>
             </li>
         </ul>
     </div>
@@ -54,3 +56,4 @@
 </div>
 <!-- /.navbar-static-side -->
 </nav>
+<script src='{{ asset('/js/admin.js') }}'></script>

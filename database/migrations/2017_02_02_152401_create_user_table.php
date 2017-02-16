@@ -18,10 +18,9 @@ class CreateUserTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->boolean('gender');
-            $table->date('birthday');
             $table->boolean('role')->default(false);
             $table->string('image')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
