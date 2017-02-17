@@ -165,4 +165,5 @@
     <!-- /#page-wrapper -->
 @stop
 @section('script')
+    <script src='{{ asset('/js/admin.js') }}'></script>
 @stop

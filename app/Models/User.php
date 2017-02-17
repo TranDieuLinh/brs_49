@@ -14,6 +14,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'user';
     protected $fillable = [
         'name',
         'email',
@@ -102,5 +103,10 @@ class User extends Authenticatable
     public function rates()
     {
         return $this->hasMany(Rate::class);
+    }
+
+    public function scopeFindUser($query, $data)
+    {
+        return $query->where('email', $data);
     }
 }

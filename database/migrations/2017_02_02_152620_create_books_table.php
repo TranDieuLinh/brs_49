@@ -20,6 +20,7 @@ class CreateBooksTable extends Migration
             $table->string('author_name');
             $table->foreign('author_name')->references('author_name')->on('authors');
             $table->string('title');
+            $table->text('description');
             $table->integer('number_of_page');
             $table->string('image');
             $table->string('publisher');

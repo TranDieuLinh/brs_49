@@ -20,4 +20,19 @@ class HomeController extends Controller
     {
         return view('admin.start');
     }
+
+    public function login(){
+        return view('user.login');
+    }
+
+    /**
+     * Show the profile for the given user.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        return view('user.home', ['user' => User::findOrFail($id)]);
+    }
 }
