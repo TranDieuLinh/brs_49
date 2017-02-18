@@ -7,13 +7,13 @@
     <link type="text/css" href='{{ asset('Bootstrap/css/sweet-alert.css') }}' rel="stylesheet">
     <nav>
         <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="javascript:void(0)">@lang('header.home')</a></li>
-            <li role="presentation" class="active"><a href="javascript:void(0)">@lang('header.account')</a></li>
+            <li role="presentation"><a href="{{ url('/home') }}">@lang('header.home')</a></li>
+            <li role="presentation" class="active"><a href="{{ url('/login') }}">@lang('header.account')</a></li>
             <li role="presentation"><a href="javascript:void(0)">@lang('sidebar.contact')</a></li>
         </ul>
     </nav>
 @stop
-@section('sidebar-right')
+@section('sidebar-up')
     <hr color="red">
     <section id="form"><!--form-->
         <div class="container">
@@ -23,36 +23,36 @@
                         <h2><p class="uppercase">@lang('login.login')</p></h2>
                         <form method="post" action="{{ Asset('login') }}" id="login1">
                             <div class="input-group">
-                                <input id="email" type="email" class="form-control" placeholder=@lang('login.email') name="email">
+                                <input id="email" type="email" class="form-control login-form-input" placeholder=@lang('login.email') name="email">
                             </div>
                             <div class="input-group">
-                                <input id="password" type="password" class="form-control" placeholder=@lang('login.password')
-                                       name="password">
+                                <input id="password" type="password" class="form-control login-form-input" placeholder=@lang('login.password')
+                                       name="password" style="width: 400px">
                             </div>
                             <button type="submit" class="btn btn-default" id="submit_login">@lang('login.login')
                             </button>
                         </form>
                     </div><!--/login form-->
                 </div>
-                <div class="col-sm-1">
+                <div class="col-sm-1 col-sm-offset-1">
                     <h2 class="or">@lang('login.or')</h2>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 col-sm-offset-1">
                     <div class="signup-form"><!--sign up form-->
                         <h2><p class="uppercase">@lang('login.signup')</p></h2>
                         <form method="post" action="{{ Asset('login') }}" id="signup">
                             <div class="input-group">
-                                <input id="name" type="text" class="form-control" placeholder=@lang('login.name') name="name">
+                                <input id="name" type="text" class="form-control login-form-input" placeholder=@lang('login.name') name="name">
                             </div>
                             <div class="input-group">
-                                <input id="email" type="text" class="form-control" placeholder=@lang('login.email') name="email">
+                                <input id="email" type="text" class="form-control login-form-input" placeholder=@lang('login.email') name="email">
                             </div>
                             <div class="input-group">
-                                <input id="password" type="password" class="form-control" placeholder=@lang('login.password')
+                                <input id="password" type="password" class="form-control login-form-input" placeholder=@lang('login.password')
                                        name="password">
                             </div>
                             <div class="input-group">
-                                <input id="repassword" type="password" class="form-control" name="repassword"
+                                <input id="repassword" type="password" class="form-control login-form-input" name="repassword"
                                        placeholder=@lang('login.repassword')>
                             </div>
                             <button id="sign-up1" type="submit" class="btn btn-default">

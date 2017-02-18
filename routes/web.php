@@ -14,10 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('home/', 'HomeController@index');
+Route::get('books/search', [
+    'as' => 'user.books.search',
+    'uses' => 'BooksController@search'
+]);
+Route::resource('home', 'HomeController');
 Route::get('login', 'Auth\LoginController@getLogin');
 Route::get('admin/', 'HomeController@admin');
 Route::get('user/{id}', 'UserController@show');
 Route::post('signup', 'Auth\LoginController@signup');
 Route::post('checkemail', 'Auth\LoginController@checkemail');
 Route::post('submit_login', 'Auth\LoginController@submit_login');
+Route::resource('book', 'BookController');

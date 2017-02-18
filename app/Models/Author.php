@@ -10,9 +10,9 @@ namespace App\Models;
 
 class Author extends BaseModel
 {
-    protected $table = "authors";
+    protected $table = 'authors';
     protected $fillable = [
-        'name',
+        'author_name',
     ];
 
     /**
@@ -23,5 +23,18 @@ class Author extends BaseModel
     public function books()
     {
         return $this->hasMany(Book::class);
+    }
+
+    public function scopeFindExcellentAuthor($query){
+        $authors = Author::all();
+        $author = [];
+        foreach ($authors as $au)
+        {
+            if (count($au->books) > 2)
+            {
+                array_push($author, $au);
+            }
+        }
+        return $author;
     }
 }
