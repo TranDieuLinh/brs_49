@@ -8,22 +8,21 @@
 
 namespace App\Models;
 
-
 class Book extends BaseModel
 {
     protected $table = "books";
     protected $fillable = [
-        'author',
+        'author_id',
         'description',
-        'name',
-        'category',
-        'size',
+        'title',
+        'category_id',
         'number_of_page',
         'date_published',
         'publisher',
         'image',
         'rate',
-        'rate_count'
+        'rate_count',
+        'price',
     ];
 
     /**
@@ -92,5 +91,30 @@ class Book extends BaseModel
     public function rates()
     {
         return $this->hasMany(Rate::class);
+    }
+
+    public function scopeFindByCategory($query, $id)
+    {
+        return $query->join('authors', 'books.author_id', '=', 'authors.id')
+            ->where('category_id', $id)->get();
+    }
+
+    public function scopeFindByAuthor($query, $id)
+    {
+        return $query->join('authors', 'books.author_id', '=', 'authors.id')
+            ->where('author_id', $id)->get();
+    }
+
+    public function scopeFindLatest($query)
+    {
+        return $query->join('authors', 'books.author_id', '=', 'authors.id')
+            ->orderBy('date_published', 'desc')->limit(15)->get();
+    }
+
+    public function scopeSearch($query, $search) {
+        return $query->join('authors', 'books.author_id', '=', 'authors.id')
+            ->where('authors.author_name', 'like', $search)
+            ->orWhere('books.title', 'like', '%'.$search.'%')
+            ->limit(20)->get();
     }
 }

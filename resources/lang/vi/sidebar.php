@@ -25,4 +25,5 @@ return [
     'latest-stories' => 'Truyện mới nhất',
     'most-popular' => 'Truyện được yêu thích nhất',
     'contact' => 'Liên hệ',
+    'search' => 'Tìm kiếm',
 ];

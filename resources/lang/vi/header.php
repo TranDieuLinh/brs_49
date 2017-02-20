@@ -20,4 +20,5 @@ return [
     'canceled-by-user' => 'Yêu cầu được hủy bởi người dùng',
     'new-request' => 'Yêu cầu mới',
     'admin' => 'Quản lý',
+    'not-found' => "Không tìm thấy kết quả!",
 ];

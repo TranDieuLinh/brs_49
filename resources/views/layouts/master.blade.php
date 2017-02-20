@@ -18,6 +18,7 @@
     <link href='{{ asset('/css/sweetalert.css') }}' rel="stylesheet">
     <!-- Custom Fonts -->
     <link href='{{ asset('/bower_components/font-awesome/css/font-awesome.min.css') }}' rel="stylesheet">
+    @yield('css')
 </head>
 <body>
 <div class="container">
@@ -29,10 +30,10 @@
     </div>
     <div class="row-l">
         <div class="row marketing">
-            <div class="col-lg">
+            <div class="col-sm-3">
                 @yield('sidebar-left')
             </div>
-            <div class="col-lg">
+            <div class="col-sm-9">
                 @yield('sidebar-right')
             </div>
         </div>

@@ -8,12 +8,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
+use App\Models\Book;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('homes.index');
+        if (($keyword = \Request::get('search')) != null)
+        {
+            $books = Book::search($keyword);
+            $title = null;
+        } else
+        {
+            $books = Book::findByCategory(1);
+            $title = Category::find(1)->name;
+        }
+        $categories = Category::all();
+        $author = Author::findExcellentAuthor();
+
+        return view('homes.index')->with([
+            'books'=>$books,
+            'author'=>$author,
+            'categories'=>$categories,
+            'title'=>$title]);
+    }
+
+    public function show($id)
+    {
+        if ($id < 101 && $id > 0) {
+            $books = Book::findByCategory($id);
+            $title = Category::find($id)->name;
+        } elseif ($id >= 101) {
+            $books = Book::findByAuthor($id-100);
+            $title = Author::find($id-100)->author_name;
+        } else {
+            $books = Book::findLatest();
+            $title = "Mới nhất";
+        }
+        $categories = Category::all();
+        $author = Author::findExcellentAuthor();
+        return view('homes.index')->with([
+            'books' => $books,
+            'author' => $author,
+            'categories' => $categories,
+            'title' => $title]);
     }
 
     public function admin()
@@ -21,18 +61,8 @@ class HomeController extends Controller
         return view('admin.start');
     }
 
-    public function login(){
-        return view('user.login');
-    }
-
-    /**
-     * Show the profile for the given user.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
+    public function login()
     {
-        return view('user.home', ['user' => User::findOrFail($id)]);
+        return view('user.login');
     }
 }
