@@ -20,10 +20,13 @@ class BookController extends Controller
         $book = Book::find($id);
         $category = Category::find($book->category_id);
         $author = Author::find($book->author_id);
+        $reviews = $book->reviews()->with(['comments', 'user'])->get();
 
         return view('homes.book-details')->with([
             'book' => $book,
             'category' => $category,
-            'author' => $author]);
+            'author' => $author,
+            'reviews' => $reviews
+        ]);
     }
 }

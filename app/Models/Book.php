@@ -93,26 +93,14 @@ class Book extends BaseModel
         return $this->hasMany(Rate::class);
     }
 
-    public function scopeFindByCategory($query, $id)
-    {
-        return $query->join('authors', 'books.author_id', '=', 'authors.id')
-            ->where('category_id', $id)->get();
-    }
-
-    public function scopeFindByAuthor($query, $id)
-    {
-        return $query->join('authors', 'books.author_id', '=', 'authors.id')
-            ->where('author_id', $id)->get();
-    }
-
     public function scopeFindLatest($query)
     {
-        return $query->join('authors', 'books.author_id', '=', 'authors.id')
-            ->orderBy('date_published', 'desc')->limit(15)->get();
+        return $query->orderBy('date_published', 'desc')->limit(15)->get();
     }
 
     public function scopeSearch($query, $search) {
-        return $query->join('authors', 'books.author_id', '=', 'authors.id')
+        return $query->join('authors', 'authors.id', '=', 'books.author_id')
+            ->select('books.id as id', 'books.title', 'books.date_published', 'books.price','books.image','books.author_id as author_id')
             ->where('authors.author_name', 'like', $search)
             ->orWhere('books.title', 'like', '%'.$search.'%')
             ->limit(20)->get();
