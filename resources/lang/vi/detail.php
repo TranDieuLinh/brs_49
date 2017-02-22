@@ -12,4 +12,5 @@ return [
     'producer' => "Nhà xuất bản",
     'page' => 'Số trang',
     'publish-date' => 'Ngày ra mắt',
+    'comment' => 'Bình luận',
 ];

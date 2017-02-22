@@ -34,7 +34,6 @@
                 <h2>@lang('header.not-found')</h2>
             </div>
         @endif
-
         </div><!--features_items-->
         @foreach ($books as $book)
             <div class="col-sm-3">
@@ -45,7 +44,7 @@
                                 <img src="{{ $book->image }}" title="{{ $book->title }}"/></a>
                             <h2>{{ $book->price }}</h2>
                             <h4>{{ $book->title }}</h4>
-                            <h5>{{ $book->author_name }}</h5>
+                            <h5>{{ \App\Models\Author::find($book->author_id)->author_name }}</h5>
                             <h6>{{ $book->date_published }}</h6>
                         </div>
                     </div>

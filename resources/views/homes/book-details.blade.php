@@ -70,6 +70,61 @@
                 <br/>
             </div>
         </div>
+        <div class="row">
+            <!-- Contenedor Principal -->
+            <div class="comments-container">
+                <h1>@lang('detail.comment')</h1>
+                <ul id="comments-list" class="comments-list">
+                    @if (count($reviews)!= 0)
+                        @foreach ($reviews as $review)
+                            <li>
+                                <div class="comment-main-level">
+                                    <!-- Avatar -->
+                                    <div class="comment-avatar">
+                                        <img src={{ $review->user->image }}></div>
+                                    <!-- Contenedor del Comentario -->
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name">
+                                                <a href="http://creaticode.com/blog">{{ $review->user->name }}</a>
+                                            </h6>
+                                            <span>{{ $review->created_at }}</span>
+                                            <i class="fa fa-reply"></i>
+                                            <i class="fa fa-heart"></i>
+                                        </div>
+                                        <div class="comment-content">{{ $review->content }}</div>
+                                    </div>
+                                </div>
+
+                                <!-- Respuestas de los comentarios -->
+                                <ul class="comments-list reply-list">
+                                    @if(count($comments = $review->comments) != 0)
+                                        @foreach($comments as $comment)
+                                            <li>
+                                                <!-- Avatar -->
+                                                <div class="comment-avatar"><img src={{ $comment->user->image }}></div>
+                                                <!-- Contenedor del Comentario -->
+                                                <div class="comment-box">
+                                                    <div class="comment-head">
+                                                        <h6 class="comment-name">
+                                                            <a href="http://creaticode.com/blog">{{ $comment->user->name }}</a>
+                                                        </h6>
+                                                        <span>{{ $comment->created_at }}</span>
+                                                        <i class="fa fa-reply"></i>
+                                                        <i class="fa fa-heart"></i>
+                                                    </div>
+                                                    <div class="comment-content">{{ $comment->content }}</div>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    @endif
+                                </ul>
+                            </li>
+                        @endforeach
+                    @endif
+                </ul>
+            </div>
+        </div>
     </div>
 @stop
 @section('script')

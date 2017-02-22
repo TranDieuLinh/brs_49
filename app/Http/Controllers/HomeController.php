@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
+use Symfony\Component\DomCrawler\AbstractUriElement;
 
 class HomeController extends Controller
 {
@@ -22,8 +23,9 @@ class HomeController extends Controller
             $title = null;
         } else
         {
-            $books = Book::findByCategory(1);
-            $title = Category::find(1)->name;
+            $category = Category::find(1);
+            $books = $category->books()->get();
+            $title = $category->name;
         }
         $categories = Category::all();
         $author = Author::findExcellentAuthor();
@@ -38,11 +40,13 @@ class HomeController extends Controller
     public function show($id)
     {
         if ($id < 101 && $id > 0) {
-            $books = Book::findByCategory($id);
+            $category = Category::find($id);
+            $books = $category->books()->get();
             $title = Category::find($id)->name;
         } elseif ($id >= 101) {
-            $books = Book::findByAuthor($id-100);
-            $title = Author::find($id-100)->author_name;
+            $author = Author::find($id - 100);
+            $books = $author->books()->get();
+            $title = Author::find($id - 100)->author_name;
         } else {
             $books = Book::findLatest();
             $title = "Mới nhất";
