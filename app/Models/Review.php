@@ -17,7 +17,7 @@ class Review extends BaseModel
         'book_id',
         'content',
         'rate',
-        'rate_count'
+        'rate_count',
     ];
 
     /**

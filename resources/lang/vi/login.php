@@ -12,5 +12,6 @@ return [
     'email' => 'Email',
     'password' => 'Mật-khẩu',
     'repassword' => 'Nhập-lại-mật-khẩu',
-    'or' => "HOẶC"
+    'or' => 'HOẶC',
+    'logout' => 'Đăng xuất'
 ];

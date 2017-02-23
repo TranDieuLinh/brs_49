@@ -5,14 +5,10 @@
  * Date: 06/02/2017
  * Time: 9:10 AM
  */
-
 namespace App\Http\Controllers;
-
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
-use Symfony\Component\DomCrawler\AbstractUriElement;
-
 class HomeController extends Controller
 {
     public function index()
@@ -29,14 +25,12 @@ class HomeController extends Controller
         }
         $categories = Category::all();
         $author = Author::findExcellentAuthor();
-
         return view('homes.index')->with([
             'books'=>$books,
             'author'=>$author,
             'categories'=>$categories,
             'title'=>$title]);
     }
-
     public function show($id)
     {
         if ($id < 101 && $id > 0) {
@@ -63,10 +57,5 @@ class HomeController extends Controller
     public function admin()
     {
         return view('admin.start');
-    }
-
-    public function login()
-    {
-        return view('user.login');
     }
 }

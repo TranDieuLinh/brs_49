@@ -11,7 +11,7 @@
     <nav>
         <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><a href="{{ url('/home') }}">@lang('header.home')</a></li>
-            <li role="presentation"><a href="{{ action('Auth\LoginController@getLogin') }}">@lang('header.account')</a>
+            <li role="presentation"><a href="{{ action('AuthController@index') }}">@lang('header.account')</a>
             </li>
             <li role="presentation"><a href="javascript:void(0)">@lang('sidebar.contact')</a></li>
         </ul>
@@ -91,6 +91,10 @@
                                             <span>{{ $review->created_at }}</span>
                                             <i class="fa fa-reply"></i>
                                             <i class="fa fa-heart"></i>
+                                            <i class="fa fa-heart"></i>
+                                            <i class="fa fa-heart"></i>
+                                            <i class="fa fa-heart"></i>
+                                            <i class="fa fa-heart"></i>
                                         </div>
                                         <div class="comment-content">{{ $review->content }}</div>
                                     </div>
@@ -110,8 +114,6 @@
                                                             <a href="http://creaticode.com/blog">{{ $comment->user->name }}</a>
                                                         </h6>
                                                         <span>{{ $comment->created_at }}</span>
-                                                        <i class="fa fa-reply"></i>
-                                                        <i class="fa fa-heart"></i>
                                                     </div>
                                                     <div class="comment-content">{{ $comment->content }}</div>
                                                 </div>
@@ -121,6 +123,28 @@
                                 </ul>
                             </li>
                         @endforeach
+                        @if(!Auth::guest())
+                                <div class="comment-main-level">
+                                    <!-- Avatar -->
+                                    <div class="comment-avatar">
+                                        <img src={{ Auth::user()->image }}></div>
+                                    <!-- Contenedor del Comentario -->
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name">
+                                                <a href="http://creaticode.com/blog">{{ Auth::user()->name }}</a>
+                                            </h6>
+                                        </div>
+                                        {!! Form::open(['method'=>'GET', 'route' => 'review'])  !!}
+                                        <div class="comment-content">
+                                            <input type="hidden" name="book-id" value="{{ $book->id }}">
+                                            <textarea name="review" placeholder="What are you doing right now?" ></textarea>
+                                            <button type="submit" class="btn btn-success green">Nhận xét</button>
+                                        </div>
+                                        {!! Form::close() !!}
+                                    </div>
+                                </div>
+                            @endif
                     @endif
                 </ul>
             </div>
