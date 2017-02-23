@@ -67,9 +67,4 @@ class LoginController extends Controller
         }
     }
 
-    public function logout()
-    {
-        unset($_SESSION['login']);
-        $this->load->view('home/index');
-    }
 }

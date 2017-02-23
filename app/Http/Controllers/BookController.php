@@ -12,9 +12,28 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Review;
+use Auth;
 
 class BookController extends Controller
 {
+
+    public function review(){
+        if (($content = \Request::get('review')) != null)
+        {
+            $id = \Request::get('book-id');
+            $review = new Review();
+            $review->user_id = Auth::user()->id;
+            $review->book_id = $id;
+            $review->content = $content;
+            $review->rate = 0;
+            $review->rate_count = 0;
+            $review->save();
+        }
+
+        return redirect()->route('book.show', $id);
+    }
+
     public function show($id)
     {
         $book = Book::find($id);

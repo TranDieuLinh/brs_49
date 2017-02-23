@@ -11,7 +11,7 @@
     <nav>
         <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><a href="{{ url('/home') }}">@lang('header.home')</a></li>
-            <li role="presentation"><a href="{{ action('Auth\LoginController@getLogin') }}">@lang('header.account')</a>
+            <li role="presentation"><a href="{{ action('AuthController@index') }}">@lang('header.account')</a>
             </li>
             <li role="presentation"><a href="javascript:void(0)">@lang('sidebar.contact')</a></li>
         </ul>
