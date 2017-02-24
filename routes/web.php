@@ -19,7 +19,10 @@ Route::get('book/search', [
     'uses' => 'BookController@search'
 ]);
 Route::resource('home', 'HomeController');
-Route::get('admin/', 'HomeController@admin');
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+    Route::get('/', 'HomeController@admin');
+});
+
 Route::get('review', ['uses' => 'BookController@review', 'as' => 'review']);
 Route::resource('book', 'BookController');
 Auth::routes();

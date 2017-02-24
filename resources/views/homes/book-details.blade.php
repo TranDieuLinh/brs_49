@@ -43,7 +43,6 @@
                     <h4 style="color: #6666ff">{{ $book->title }}</h4>
                     <p>{{ $book->description }}</p>
                     <br/>
-
                 </div>
                 <table class="table table-condensed">
                     <tr class="info">
@@ -74,10 +73,10 @@
             <!-- Contenedor Principal -->
             <div class="comments-container">
                 <h1>@lang('detail.comment')</h1>
-                <ul id="comments-list" class="comments-list">
-                    @if (count($reviews)!= 0)
-                        @foreach ($reviews as $review)
-                            <li>
+                <ul class="comments-list">
+                    <li>
+                        @if (count($reviews)!= 0)
+                            @foreach ($reviews as $review)
                                 <div class="comment-main-level">
                                     <!-- Avatar -->
                                     <div class="comment-avatar">
@@ -89,63 +88,94 @@
                                                 <a href="http://creaticode.com/blog">{{ $review->user->name }}</a>
                                             </h6>
                                             <span>{{ $review->created_at }}</span>
-                                            <i class="fa fa-reply"></i>
+                                            <i class="fa fa-reply" id="reply" data="{{ $review->id }}"></i>
                                             <i class="fa fa-heart"></i>
-                                            <i class="fa fa-heart"></i>
-                                            <i class="fa fa-heart"></i>
-                                            <i class="fa fa-heart"></i>
-                                            <i class="fa fa-heart"></i>
+                                            @if((!Auth::guest()) && ($review->user_id) == (Auth::user()->id))
+                                                <i class="fa fa-edit"></i>
+                                            @endif
                                         </div>
                                         <div class="comment-content">{{ $review->content }}</div>
                                     </div>
                                 </div>
-
                                 <!-- Respuestas de los comentarios -->
-                                <ul class="comments-list reply-list">
+                                <ul class="comments-list reply-list hidden" id="comment-{{ $review->id }}">
                                     @if(count($comments = $review->comments) != 0)
                                         @foreach($comments as $comment)
-                                            <li>
-                                                <!-- Avatar -->
-                                                <div class="comment-avatar"><img src={{ $comment->user->image }}></div>
-                                                <!-- Contenedor del Comentario -->
-                                                <div class="comment-box">
-                                                    <div class="comment-head">
-                                                        <h6 class="comment-name">
-                                                            <a href="http://creaticode.com/blog">{{ $comment->user->name }}</a>
-                                                        </h6>
-                                                        <span>{{ $comment->created_at }}</span>
+                                            <comment>
+                                                <li>
+                                                    <!-- Avatar -->
+                                                    <div class="comment-avatar"><img src={{ $comment->user->image }}>
                                                     </div>
-                                                    <div class="comment-content">{{ $comment->content }}</div>
-                                                </div>
-                                            </li>
+                                                    <!-- Contenedor del Comentario -->
+                                                    <div class="comment-box">
+                                                        <div class="comment-head">
+                                                            <h6 class="comment-name">
+                                                                <a href="http://creaticode.com/blog">{{ $comment->user->name }}</a>
+                                                            </h6>
+                                                            <span>{{ $comment->created_at }}</span>
+                                                            @if((!Auth::guest()) && ($comment->user_id) == (Auth::user()->id))
+                                                                <i class="fa fa-edit"></i>
+                                                            @endif
+                                                        </div>
+                                                        <div class="comment-content">{{ $comment->content }}</div>
+                                                    </div>
+                                                </li>
+                                            </comment>
                                         @endforeach
                                     @endif
+                                    @if( !Auth::guest() )
+                                        <li>
+                                            <!-- Avatar -->
+                                            <div class="comment-avatar"><img src={{ Auth::user()->image }}></div>
+                                            <!-- Contenedor del Comentario -->
+                                            <div class="comment-box">
+                                                <div class="comment-head">
+                                                    <h6 class="comment-name">
+                                                        <a href="http://creaticode.com/blog">{{ Auth::user()->name }}</a>
+                                                    </h6>
+                                                </div>
+                                                {!! Form::open(['method'=>'GET', 'route' => 'review'])  !!}
+                                                <div class="comment-content">
+                                                    <input name="status" type="hidden" value="{{ $review->id }}">
+                                                    <input type="hidden" name="book-id" value="{{ $book->id }}">
+                                                    <textarea name="review"
+                                                              placeholder="What are you doing right now?"></textarea>
+                                                    <button type="submit"
+                                                            class="btn btn-comment green">@lang('detail.comment')
+                                                    </button>
+                                                </div>
+                                                {!! Form::close() !!}
+                                            </div>
+                                        </li>
+                                    @endif
                                 </ul>
-                            </li>
-                        @endforeach
+                            @endforeach
+                        @endif
                         @if(!Auth::guest())
-                                <div class="comment-main-level">
-                                    <!-- Avatar -->
-                                    <div class="comment-avatar">
-                                        <img src={{ Auth::user()->image }}></div>
-                                    <!-- Contenedor del Comentario -->
-                                    <div class="comment-box">
-                                        <div class="comment-head">
-                                            <h6 class="comment-name">
-                                                <a href="http://creaticode.com/blog">{{ Auth::user()->name }}</a>
-                                            </h6>
-                                        </div>
-                                        {!! Form::open(['method'=>'GET', 'route' => 'review'])  !!}
-                                        <div class="comment-content">
-                                            <input type="hidden" name="book-id" value="{{ $book->id }}">
-                                            <textarea name="review" placeholder="What are you doing right now?" ></textarea>
-                                            <button type="submit" class="btn btn-success green">Nhận xét</button>
-                                        </div>
-                                        {!! Form::close() !!}
+                            <div class="comment-main-level">
+                                <!-- Avatar -->
+                                <div class="comment-avatar">
+                                    <img src={{ Auth::user()->image }}></div>
+                                <!-- Contenedor del Comentario -->
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name">
+                                            <a href="http://creaticode.com/blog">{{ Auth::user()->name }}</a>
+                                        </h6>
                                     </div>
+                                    {!! Form::open(['method'=>'GET', 'route' => 'review'])  !!}
+                                    <div class="comment-content">
+                                        <input name="status" type="hidden" value="0">
+                                        <input type="hidden" name="book-id" value="{{ $book->id }}">
+                                        <textarea name="review" placeholder="What are you doing right now?"></textarea>
+                                        <button type="submit"
+                                                class="btn btn-success green">@lang('login.review')</button>
+                                    </div>
+                                    {!! Form::close() !!}
                                 </div>
-                            @endif
-                    @endif
+                            </div>
+                        @endif
+                    </li>
                 </ul>
             </div>
         </div>

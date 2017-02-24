@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Review;
 use Auth;
 
@@ -22,13 +23,23 @@ class BookController extends Controller
         if (($content = \Request::get('review')) != null)
         {
             $id = \Request::get('book-id');
-            $review = new Review();
-            $review->user_id = Auth::user()->id;
-            $review->book_id = $id;
-            $review->content = $content;
-            $review->rate = 0;
-            $review->rate_count = 0;
-            $review->save();
+            if (($status = \Request::get('status')) == 0)
+            {
+                $review = new Review();
+                $review->user_id = Auth::user()->id;
+                $review->book_id = $id;
+                $review->content = $content;
+                $review->rate = 0;
+                $review->rate_count = 0;
+                $review->save();
+            }else
+            {
+                $comment = new Comment();
+                $comment->user_id = Auth::user()->id;
+                $comment->review_id = $status;
+                $comment->content = $content;
+                $comment->save();
+            }
         }
 
         return redirect()->route('book.show', $id);

@@ -25,7 +25,11 @@
                     <li><a href="javascript:void(0)"><i class="fa fa-gear fa-fw"></i>@lang('header.setting')</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="javascript:void(0)"><i class="fa fa-sign-out fa-fw"></i>@lang('header.logout')</a>
+                    <li>
+                        <form action="/logout" method="POST">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-block">Logout</button>
+                        </form>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->

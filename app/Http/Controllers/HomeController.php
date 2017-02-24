@@ -25,6 +25,7 @@ class HomeController extends Controller
         }
         $categories = Category::all();
         $author = Author::findExcellentAuthor();
+
         return view('homes.index')->with([
             'books'=>$books,
             'author'=>$author,
@@ -47,6 +48,7 @@ class HomeController extends Controller
         }
         $categories = Category::all();
         $author = Author::findExcellentAuthor();
+
         return view('homes.index')->with([
             'books' => $books,
             'author' => $author,

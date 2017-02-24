@@ -41,30 +41,32 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        $request->session()->flash('status', 'success');
+        $request->session()->flash('message', 'Chúc mừng bạn đã đăng nhập thành công!');
+        if($user->role == 1)
+        {
+            return redirect('/admin');
+        }
+    }
+
     public function getLogin()
     {
         return view('user.login');
     }
 
-    public function signup(SignupRequest $request)
+    protected function validateLogin(Request $request)
     {
-        $user = new User();
-        $user->name = $request->name;
-        $user->password = $request->password;
-        $user->email = $request->email;
-        $user->save();
-        echo "đăng kí thành công!";
+        $this->validate($request, [
+            $this->username() => 'required', 'password' => 'required',
+        ]);
     }
-
-    public function submit_login(Request $request) {
-        $authUser = User::findUser($request->email)->first();
-        if ($authUser) {
-            if($request->password == $authUser->password){
-                echo "đăng nhập thành công";
-            }else {
-                echo "sai tên đăng nhập hoặc mật khẩu";
-            }
-        }
-    }
-
 }

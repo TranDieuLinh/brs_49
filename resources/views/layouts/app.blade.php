@@ -51,8 +51,8 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li role="presentation"><a href="{{ url('/home') }}">@lang('header.home')</a></li>
-                            <li role="presentation" class="active"><a href="{{ url('/login') }}">@lang('login.login')</a></li>
-                            <li role="presentation" class="active"><a href="{{ url('/register') }}">@lang('login.signup')</a></li>
+                            <li role="presentation"><a href="{{ url('/login') }}">@lang('login.login')</a></li>
+                            <li role="presentation"><a href="{{ url('/register') }}">@lang('login.signup')</a></li>
                         @else
                             <li role="presentation"><a href="{{ url('/home') }}">@lang('header.home')</a></li>
                             <li role="presentation" class="active dropdown">

@@ -28,6 +28,11 @@
     <div class="">
         @yield('sidebar-up')
     </div>
+    @if (session('message'))
+        <div class="alert alert-{{ session('status') }}">
+            {{ session('message') }}
+        </div>
+    @endif
     <div class="row-l">
         <div class="row marketing">
             <div class="col-sm-3">

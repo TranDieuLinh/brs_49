@@ -374,3 +374,7 @@ p.uppercase {
     width: 300px !important;
     padding: 5px !important;
 }
+
+.col-sm-9l.page-wrapper {
+    width: 100%; !important;
+}
