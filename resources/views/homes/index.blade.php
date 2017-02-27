@@ -9,7 +9,7 @@
 @stop
 @section('header')
     <nav>
-        <ul class="nav nav-pills pull-right">
+        <ul class="nav nav-pills pull-right margin-top">
             <li role="presentation" class="active"><a href="{{ url('/home') }}">@lang('header.home')</a></li>
             <li role="presentation"><a href="{{ action('AuthController@index') }}">@lang('header.account')</a>
             </li>

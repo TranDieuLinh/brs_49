@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SignupRequest;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -55,12 +53,10 @@ class LoginController extends Controller
         if($user->role == 1)
         {
             return redirect('/admin');
+        }else
+        {
+            return redirect('/home');
         }
-    }
-
-    public function getLogin()
-    {
-        return view('user.login');
     }
 
     protected function validateLogin(Request $request)
@@ -68,5 +64,16 @@ class LoginController extends Controller
         $this->validate($request, [
             $this->username() => 'required', 'password' => 'required',
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect('/home');
     }
 }

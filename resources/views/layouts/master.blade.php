@@ -21,7 +21,7 @@
     @yield('css')
 </head>
 <body>
-<div class="container">
+<div class="container custom-container">
     <div class="header clearfix custom-line">
         @yield('header')
     </div>

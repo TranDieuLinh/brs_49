@@ -18,4 +18,5 @@ elixir(function(mix) {
     mix.copy('bower_components/font-awesome', 'public/bower_components/font-awesome');
     mix.copy('bower_components/jquery', 'public/bower_components/jquery');
     mix.copy('bower_components/metisMenu', 'public/bower_components/metisMenu');
+    mix.copy('bower_components/bootstrap-star-rating', 'public/bower_components/bootstrap-star-rating');
 });

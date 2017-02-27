@@ -9,6 +9,8 @@
 namespace App\Models;
 
 
+use Illuminate\Support\Facades\DB;
+
 class Review extends BaseModel
 {
     protected $table = 'reviews';
@@ -57,5 +59,11 @@ class Review extends BaseModel
     public function rates()
     {
         return $this->hasMany(Rate::class);
+    }
+
+    public function scopeDeleteById($query, $id)
+    {
+        $query->where('id', '=', $id)->get()->first()->comments()->delete();
+        $query->where('id', '=', $id)->delete();
     }
 }

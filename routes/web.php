@@ -24,6 +24,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 });
 
 Route::get('review', ['uses' => 'BookController@review', 'as' => 'review']);
+Route::post('book/vote', 'BookController@vote');
+Route::post('book/deleteComment', 'BookController@deleteComment');
+Route::post('book/deleteReview', 'BookController@deleteReview');
+Route::post('book/comment', 'BookController@comment');
+Route::post('book/review', 'BookController@review');
+Route::post('book/editReview', 'BookController@editReview');
+Route::post('book/editComment', 'BookController@editComment');
 Route::resource('book', 'BookController');
 Auth::routes();
 

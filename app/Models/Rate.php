@@ -48,4 +48,9 @@ class Rate extends BaseModel
         return $this->belongsTo(Book::class);
     }
 
+    public function scopeFindBookRate($query, $book_id, $user_id)
+    {
+        return $query->where(['type_id' => $book_id, 'user_id' => $user_id, 'type' => 1]);
+    }
+
 }

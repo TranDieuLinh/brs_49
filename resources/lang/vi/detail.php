@@ -14,4 +14,5 @@ return [
     'publish-date' => 'Ngày ra mắt',
     'comment' => 'Bình luận',
     'review' => 'Nhận xét',
+    'editreview' => 'Sửa đổi',
 ];
