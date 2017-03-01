@@ -35,4 +35,11 @@ class Comment extends BaseModel
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeGetComments($query, $user_id, $limit_size)
+    {
+        return $query->select(['review_id', 'content', 'created_at'])
+            ->where(['user_id' => $user_id])->orderBy('created_at', 'desc')
+            ->limit($limit_size);
+    }
 }

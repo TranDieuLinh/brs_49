@@ -32,6 +32,10 @@ Route::post('book/review', 'BookController@review');
 Route::post('book/editReview', 'BookController@editReview');
 Route::post('book/editComment', 'BookController@editComment');
 Route::resource('book', 'BookController');
+
+Route::resource('user', 'UserController');
+
 Auth::routes();
 
 Route::get('/auth', 'AuthController@index');
+Route::get('/request', 'UserController@request');

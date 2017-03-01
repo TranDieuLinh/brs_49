@@ -9,14 +9,6 @@
     <link href='{{ asset('/bower_components/bootstrap-star-rating/css/star-rating.css') }}' rel="stylesheet">
 @stop
 @section('header')
-    <nav>
-        <ul class="nav nav-pills pull-right margin-top">
-            <li role="presentation" class="active"><a href="{{ url('/home') }}">@lang('header.home')</a></li>
-            <li role="presentation"><a href="{{ action('AuthController@index') }}">@lang('header.account')</a>
-            </li>
-            <li role="presentation"><a href="javascript:void(0)">@lang('sidebar.contact')</a></li>
-        </ul>
-    </nav>
 @stop
 @section('sidebar-up')
     <div class="comment-template" style="display: none">
@@ -161,7 +153,7 @@
                                     <div class="comment-box">
                                         <div class="comment-head">
                                             <h6 class="comment-name">
-                                                <a href="http://creaticode.com/blog">{{ $review->user->name }}</a>
+                                                <a href="{{ route('user.show',  $review->user->id) }}">{{ $review->user->name }}</a>
                                             </h6>
                                             <span>{{ $review->created_at }}</span>
                                             <i class="fa fa-reply reply-review" id="reply" data-reviewid="{{ $review->id }}"></i>
@@ -192,7 +184,7 @@
                                                 <div class="comment-box">
                                                     <div class="comment-head">
                                                         <h6 class="comment-name">
-                                                            <a href="http://creaticode.com/blog">{{ $comment->user->name }}</a>
+                                                            <a href="{{ route('user.show',  $comment->user->id) }}">{{ $comment->user->name }}</a>
                                                         </h6>
                                                         <span>{{ $comment->created_at }}</span>
                                                         @if((!Auth::guest()) && ($comment->user_id) == (Auth::user()->id))
@@ -219,7 +211,7 @@
                                             <div class="comment-box">
                                                 <div class="comment-head">
                                                     <h6 class="comment-name comment-comment-name">
-                                                        <a href="http://creaticode.com/blog">{{ Auth::user()->name }}</a>
+                                                        <a href="{{ route('user.show', Auth::user()->id) }}">{{ Auth::user()->name }}</a>
                                                     </h6>
                                                 </div>
                                                 <div class="comment-content">
@@ -248,7 +240,7 @@
                                 <div class="comment-box">
                                     <div class="comment-head">
                                         <h6 class="comment-name">
-                                            <a href="http://creaticode.com/blog">{{ Auth::user()->name }}</a>
+                                            <a href="{{ route('user.show',  Auth::user()->id) }}">{{ Auth::user()->name }}</a>
                                         </h6>
                                     </div>
                                     <div class="comment-content">

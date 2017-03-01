@@ -66,4 +66,11 @@ class Review extends BaseModel
         $query->where('id', '=', $id)->get()->first()->comments()->delete();
         $query->where('id', '=', $id)->delete();
     }
+
+    public function scopeLatestReview($query, $user_id, $limit_size)
+    {
+        return $query->join('books', 'books.id', '=', 'reviews.book_id')
+            ->select(['title', 'book_id', 'content', 'reviews.user_id as user_id', 'reviews.created_at as created_at'])
+            ->where(['reviews.user_id' => $user_id])->orderBy('created_at', 'desc')->limit($limit_size);
+    }
 }

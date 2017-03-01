@@ -53,4 +53,11 @@ class Rate extends BaseModel
         return $query->where(['type_id' => $book_id, 'user_id' => $user_id, 'type' => 1]);
     }
 
+    public function scopeLatestRate($query, $user_id, $limit_size)
+    {
+        return $query->join('books', 'books.id', '=', 'rates.type_id')
+            ->select(['title', 'books.id as book_id', 'point', 'rates.user_id as user_id', 'rates.created_at as created_at'])
+            ->where(['rates.user_id' => $user_id])->orderBy('created_at', 'desc')->limit($limit_size);
+    }
+
 }

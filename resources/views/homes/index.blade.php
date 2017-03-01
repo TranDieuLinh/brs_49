@@ -8,14 +8,6 @@
     <link type="text/css" href='{{ asset('Bootstrap/css/sweet-alert.css') }}' rel="stylesheet">
 @stop
 @section('header')
-    <nav>
-        <ul class="nav nav-pills pull-right margin-top">
-            <li role="presentation" class="active"><a href="{{ url('/home') }}">@lang('header.home')</a></li>
-            <li role="presentation"><a href="{{ action('AuthController@index') }}">@lang('header.account')</a>
-            </li>
-            <li role="presentation"><a href="javascript:void(0)">@lang('sidebar.contact')</a></li>
-        </ul>
-    </nav>
 @stop
 @section('sidebar-up')
     <hr color="red">
@@ -34,7 +26,6 @@
                 <h2>@lang('header.not-found')</h2>
             </div>
         @endif
-        </div><!--features_items-->
         @foreach ($books as $book)
             <div class="col-sm-3">
                 <div class="product-image-wrapper">
