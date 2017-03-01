@@ -243,9 +243,9 @@ $(document).ready(function() {
     //Edit comment
     $(document).on('click', '.edit-comment', function() {
         var $comment_box = $(this).closest('.comment-box');
-        var review_text = $comment_box.find('.comment-content').text();
+        var review_text = $comment_box.find('.com-content').text();
         $comment_box.find('textarea[name="comment"]').val(review_text);
-        $comment_box.find('.comment-content').hide();
+        $comment_box.find('.com-content').hide();
         $comment_box.find('.edit-comment-content').show();
     });
 
@@ -269,9 +269,9 @@ $(document).ready(function() {
             data: data,
             success: function (response) {
                 var $comment_box = $(self).closest('.comment-box');
-                $comment_box.find('.comment-content').text(review_content);
+                $comment_box.find('.com-content').text(comment_content);
                 $comment_box.find('.edit-comment-content').hide();
-                $comment_box.find('.comment-content').show();
+                $comment_box.find('.com-content').show();
             },
             error: function () {
             }

@@ -7,6 +7,8 @@ use App\Models\MarkRead;
 use App\Models\Rate;
 use App\Models\Review;
 use App\Models\User;
+use Auth;
+use Illuminate\Http\Request;
 
 class UserController extends Controller {
 
@@ -70,9 +72,32 @@ class UserController extends Controller {
         return $my_array;
     }
 
-    public function request()
+    public function allRequest()
     {
+        $requests = Auth::user()->requestBooks()->get();
+        return view('user.request')->with([
+            'requests' => $requests,
+        ]);
+    }
 
-        return view('user.request');
+    public function addRequest()
+    {
+        return view('user.add-request');
+    }
+
+    public function sendRequest(Request $addRequest)
+    {
+        $request = new \App\Models\Request();
+        $request->user_id = Auth::user()->id;
+        $request->book_name = $addRequest->name;
+        $request->author_name = $addRequest->author;
+        $request->date_published = $addRequest->date_published;
+        $request->description = $addRequest->description;
+        $request->status = 0;
+        $request->save();
+        $requests = Auth::user()->requestBooks()->get();
+        return view('user.request')->with([
+            'requests' => $requests,
+        ]);
     }
 }

@@ -167,7 +167,7 @@ class BookController extends Controller
 
     public function editComment(Request $request)
     {
-        $comment = Review::find($request->comment_id);
+        $comment = Comment::find($request->comment_id);
         if ($comment) {
             $comment->content = $request->comment_content;
             $comment->save();

@@ -192,7 +192,7 @@
                                                             <i class="delete-comment fa fa-trash" data-commentid="{{ $comment->id }}"></i>
                                                         @endif
                                                     </div>
-                                                    <div class="comment-content">{{ $comment->content }}</div>
+                                                    <div class="comment-content com-content">{{ $comment->content }}</div>
                                                     <div class="comment-content edit-comment-content" style="display: none">
                                                         <input type="hidden" name="book-id" value="{{ $book->id }}">
                                                         <textarea name="comment" placeholder=""></textarea>

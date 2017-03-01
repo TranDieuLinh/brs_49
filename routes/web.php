@@ -33,9 +33,13 @@ Route::post('book/editReview', 'BookController@editReview');
 Route::post('book/editComment', 'BookController@editComment');
 Route::resource('book', 'BookController');
 
+Route::get('/auth', 'AuthController@index');
+Route::get('/allrequest', 'UserController@allRequest');
+Route::get('/addRequest', 'UserController@addRequest');
+Route::post('/addRequest', 'UserController@sendRequest');
 Route::resource('user', 'UserController');
 
+Route::post('book/deleteRequest', 'RequestController@deleteRequest');
+Route::resource('request', 'RequestController');
 Auth::routes();
 
-Route::get('/auth', 'AuthController@index');
-Route::get('/request', 'UserController@request');

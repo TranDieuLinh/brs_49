@@ -29,7 +29,7 @@
                 <li role="presentation"><a href="{{ action('AuthController@index') }}">@lang('header.account')</a>
                 </li>
                 @if( !Auth::guest() )
-                    <li role="presentation"><a href="{{ action('UserController@request') }}">@lang('sidebar.contact')</a></li>
+                    <li role="presentation"><a href="{{ action('UserController@allRequest') }}">@lang('sidebar.contact')</a></li>
                 @endif
             </ul>
         </nav>
