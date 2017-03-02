@@ -24,7 +24,7 @@ class CreateBooksTable extends Migration
             $table->string('number_of_page');
             $table->string('image');
             $table->string('publisher');
-            $table->date('date_published');
+            $table->string('date_published');
             $table->integer('rate');
             $table->integer('rate_count');
             $table->string('price');
