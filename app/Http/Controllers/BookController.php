@@ -31,7 +31,8 @@ class BookController extends Controller
         $reviews = $book->reviews()->with(['comments', 'user'])->get();
         if($book->rate_count >0)
         {
-            $score = bcdiv($book->rate, $book->rate_count, 2);
+            //$score = bcdiv($book->rate, $book->rate_count, 2);
+            $score = number_format($book->rate/$book->rate_count,2);
         }else
         {
             $score = 0;
@@ -113,7 +114,7 @@ class BookController extends Controller
         }
         if($book->rate_count >0)
         {
-            $score = bcdiv($book->rate, $book->rate_count, 2);
+            $score = number_format($book->rate/$book->rate_count,2);
         }else
         {
             $score = 0;
