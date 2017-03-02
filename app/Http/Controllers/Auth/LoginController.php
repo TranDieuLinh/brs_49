@@ -48,7 +48,6 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        $count_request = count(\App\Models\Request::all());
         $request->session()->flash('status', 'success');
         $request->session()->flash('message', 'Chúc mừng bạn đã đăng nhập thành công!');
         if($user->role == 1)

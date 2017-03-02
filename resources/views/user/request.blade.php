@@ -28,15 +28,16 @@
                                 <td><span class="label label-danger">Bị từ chối</span></td>
                             @endif
                             @if( $request->status == 0)
-                                <td><a class="btn icon-btn btn-danger delete_request" href="#">
-                                        <span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span>Xóa</a>
+                                <td><button class="btn icon-btn btn-danger delete_request" data-requestid="{{ $request->id }}">
+                                        <span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span>Xóa</button>
                                     <a class="btn icon-btn btn-info" href="{{ route('request.show',  $request->id) }}">
                                         <span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Sửa</a>
                                 </td>
                             @else
-                                <td><a class="btn icon-btn btn-danger delete_request" href="#">
-                                        <span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger" data-requestid="{{ $request->id }}">
-                                        </span>Xóa</a>
+                                <td><button class="btn icon-btn btn-danger delete_request" data-requestid="{{ $request->id }}" >
+                                        <span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"
+                                              data-requestid="{{ $request->id }}">
+                                        </span>Xóa</button>
                                 </td>
                             @endif
                         </tr>

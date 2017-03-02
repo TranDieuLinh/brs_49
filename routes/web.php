@@ -34,12 +34,19 @@ Route::post('book/editComment', 'BookController@editComment');
 Route::resource('book', 'BookController');
 
 Route::get('/auth', 'AuthController@index');
+
+Route::resource('user', 'UserController');
 Route::get('/allrequest', 'UserController@allRequest');
 Route::get('/addRequest', 'UserController@addRequest');
-Route::post('/addRequest', 'UserController@sendRequest');
-Route::resource('user', 'UserController');
+Route::post('/addRequest', 'UserController@addRequest');
+Route::get('/editRequest', 'UserController@editRequest');
+Route::post('/editRequest', 'UserController@editRequest');
+//Route::post('/addRequest', 'UserController@sendRequest');
 
-Route::post('book/deleteRequest', 'RequestController@deleteRequest');
+Route::get('/userManager', 'Admin\AdminController@allUser');
+Route::get('/bookManager', 'Admin\AdminController@allBook');
+Route::get('/requestManager', 'Admin\AdminController@allRequest');
 Route::resource('request', 'RequestController');
-Auth::routes();
 
+Route::resource('request-manager', 'Admin\RequestManagerController');
+Auth::routes();

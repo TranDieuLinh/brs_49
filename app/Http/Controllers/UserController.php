@@ -80,12 +80,27 @@ class UserController extends Controller {
         ]);
     }
 
-    public function addRequest()
+    public function addRequest(Request $request)
     {
+        if ($request->isMethod('post')) {
+            if ($this->sendRequest($request)) {
+                return redirect('/allrequest');
+            }
+        }
         return view('user.add-request');
     }
 
-    public function sendRequest(Request $addRequest)
+    public function editRequest(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            if ($this->updateRequest($request)) {
+                return redirect('/allrequest');
+            }
+        }
+        return view('user.add-request');
+    }
+
+    private function sendRequest(Request $addRequest)
     {
         $request = new \App\Models\Request();
         $request->user_id = Auth::user()->id;
@@ -94,10 +109,18 @@ class UserController extends Controller {
         $request->date_published = $addRequest->date_published;
         $request->description = $addRequest->description;
         $request->status = 0;
-        $request->save();
-        $requests = Auth::user()->requestBooks()->get();
-        return view('user.request')->with([
-            'requests' => $requests,
-        ]);
+        return $request->save();
+    }
+
+    private function updateRequest(Request $addRequest)
+    {
+        $request = \App\Models\Request::find($addRequest->requestid);
+        $request->user_id = Auth::user()->id;
+        $request->book_name = $addRequest->name;
+        $request->author_name = $addRequest->author;
+        $request->date_published = $addRequest->date_published;
+        $request->description = $addRequest->description;
+        $request->status = 0;
+        return $request->save();
     }
 }
