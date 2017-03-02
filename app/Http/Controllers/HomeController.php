@@ -9,6 +9,8 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\User;
+
 class HomeController extends Controller
 {
     public function index()
@@ -58,6 +60,13 @@ class HomeController extends Controller
 
     public function admin()
     {
-        return view('admin.start');
+        $request = \App\Models\Request::all();
+        $book_count = count(Book::all());
+        $user_count = count(User::all());
+        return view('admin.start')->with([
+            'book_count' => $book_count,
+            'request' => $request,
+            'user_count' => $user_count,
+            ]);
     }
 }

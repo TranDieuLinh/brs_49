@@ -15,14 +15,14 @@
                             <i class="fa fa-file fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">26</div>
+                            <div class="huge">{{ count($request) }}</div>
                             <div>@lang('sidebar.request')</div>
                         </div>
                     </div>
                 </div>
                 <a href="javascript:void(0)">
                     <div class="panel-footer">
-                        <span class="pull-left">@lang ('header.view')</span>
+                        <span class="pull-left"><a href="{{ action('Admin\AdminController@allRequest') }}">@lang ('header.view')</a></span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
@@ -37,14 +37,14 @@
                             <i class="fa fa-users fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">12</div>
+                            <div class="huge">{{ $user_count }}</div>
                             <div>@lang('sidebar.user')</div>
                         </div>
                     </div>
                 </div>
                 <a href="javascript:void(0)">
                     <div class="panel-footer">
-                        <span class="pull-left"><a href="{{ action('AuthController@index') }}">@lang ('header.view')</span>
+                        <span class="pull-left"><a href="{{ action('Admin\AdminController@allUser') }}">@lang ('header.view')</a></span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
@@ -59,14 +59,14 @@
                             <i class="fa fa-tags fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">124</div>
+                            <div class="huge">{{ $book_count }}</div>
                             <div>@lang('header.book')</div>
                         </div>
                     </div>
                 </div>
                 <a href="javascript:void(0)">
                     <div class="panel-footer">
-                        <span class="pull-left">@lang ('header.view')</span>
+                        <span class="pull-left"><a href="{{ action('Admin\AdminController@allBook') }}">@lang ('header.view')</a></span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>

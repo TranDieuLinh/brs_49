@@ -14,15 +14,14 @@ class RequestController extends Controller
 {
     public function show($id)
     {
-        $requests = Request::find($id);
-        return view('user.add-request')->with([
-            'requests' => $requests,
+        $request = \App\Models\Request::find($id);
+        return view('user.edit-request')->with([
+            'request' => $request,
             ]);
     }
 
-    public function deleteRequest(Request $request)
+    public function destroy($id)
     {
-        $request_id = $request->request_id;
-        \App\Models\Request::destroy($request_id);
+        \App\Models\Request::destroy($id);
     }
 }

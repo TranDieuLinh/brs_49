@@ -16,12 +16,11 @@ $(document).on('click', '.delete_request', function () {
         request_id: requestIdDelete
     };
     $.ajax({
-        url: './deleteRequest',
-        method: 'POST',
-        data: data,
+        url: '/request/' + requestIdDelete,
+        type: 'DELETE',
         success: function (response) {
             console.log(response);
-            //Delete view
+            //Delete row
             $(self).closest('.row-item').remove(); //Find parent view
         },
         error: function () {
