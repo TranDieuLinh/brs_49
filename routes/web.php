@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 Route::get('book/search', [
     'as' => 'user.book.search',
     'uses' => 'BookController@search'
@@ -49,4 +47,7 @@ Route::get('/requestManager', 'Admin\AdminController@allRequest');
 Route::resource('request', 'RequestController');
 
 Route::resource('request-manager', 'Admin\RequestManagerController');
+Route::post('/cancelRequest', 'Admin\RequestManagerController@cancelRequest');
+Route::resource('request-approve', 'Admin\RequestApproveController');
+Route::post('/approveRequest', 'Admin\RequestApproveController@approveRequest');
 Auth::routes();

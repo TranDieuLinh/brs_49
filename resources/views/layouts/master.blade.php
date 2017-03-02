@@ -28,7 +28,7 @@
                 <li role="presentation" class="active"><a href="{{ url('/home') }}">@lang('header.home')</a></li>
                 <li role="presentation"><a href="{{ action('AuthController@index') }}">@lang('header.account')</a>
                 </li>
-                @if( !Auth::guest() )
+                @if( !Auth::guest() && (Auth::user()->role != 1))
                     <li role="presentation"><a href="{{ action('UserController@allRequest') }}">@lang('sidebar.contact')</a></li>
                 @endif
             </ul>

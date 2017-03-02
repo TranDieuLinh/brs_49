@@ -37,4 +37,9 @@ class Author extends BaseModel
         }
         return $author;
     }
+
+    public function scopeFindByName($query, $name)
+    {
+        return $query->where(['author_name' => $name]);
+    }
 }

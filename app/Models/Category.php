@@ -25,4 +25,9 @@ class Category extends BaseModel
     {
         return $this->hasMany(Book::class);
     }
+
+    public function scopeFindByName($query, $name)
+    {
+        return $query->where(['name' => $name]);
+    }
 }

@@ -26,6 +26,8 @@
                                 <td><span class="label label-success">Đã xử lý</span></td>
                             @elseif( $request->status == 2)
                                 <td><span class="label label-danger">Bị từ chối</span></td>
+                            @elseif( $request->status == 3)
+                                <td><span class="label label-info">Đang xử lý</span></td>
                             @endif
                             @if( $request->status == 0)
                                 <td><button class="btn icon-btn btn-danger delete_request" data-requestid="{{ $request->id }}">

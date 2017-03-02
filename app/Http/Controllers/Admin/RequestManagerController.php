@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Author;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -16,11 +17,9 @@ class RequestManagerController extends Controller
 
     public function show($id)
     {
-        $categories = Category::all();
         $request = \App\Models\Request::find($id);
         return view('admin.request-detail')->with([
             'request' => $request,
-            'categories' => $categories,
         ]);
     }
 

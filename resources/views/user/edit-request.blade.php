@@ -23,7 +23,7 @@
                            placeholder="Ngày xuất bản" value="{{ $request->date_published }}" required>
                 </div>
                 <div class="form-group">
-                         <textarea class="form-control" type="textarea" id="description"
+                         <textarea class="form-control" type="textarea" name="description"
                                    placeholder="description" maxlength="140" rows="7"> {{ $request->description }}</textarea>
 
                 </div>

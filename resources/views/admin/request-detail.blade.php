@@ -21,10 +21,16 @@
                 <td>{{ $request->description }}</td>
             </tr>
         </table>
-        <a href="{{ action('Admin\RequestManagerController@updateCancelRequest') }}" class="btn icon-btn btn-danger cancel_request">
+        {!! Form::open([
+                        'url' => '/cancelRequest',
+                        'method' => 'post',
+                    ]) !!}
+        <input type="hidden" class="form-control" name="requestid" value="{{ $request->id }}">
+        <button href="{{ action('Admin\RequestManagerController@cancelRequest') }}" class="btn icon-btn btn-danger cancel_request">
                                         <span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger" data-requestid="{{ $request->id }}">
-                                        </span>Hủy yêu cầu</a>
-        <button  type="submit" id="submit" name="submit" class="btn btn-primary pull-right">Chấp nhận yêu cầu</button>
+                                        </span>Hủy yêu cầu</button>
+        <a name="approve" href="{{ route('request-approve.show',  $request->id) }}" class="btn btn-primary pull-right">Chấp nhận yêu cầu</a>
+        {!! Form::close() !!}
     </div>
 @stop
 @section('script')

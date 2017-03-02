@@ -26,11 +26,13 @@
                                 <td><span class="label label-success">Đã xử lý</span></td>
                             @elseif( $request->status == 2)
                                 <td><span class="label label-danger">Bị từ chối</span></td>
+                            @elseif( $request->status == 3)
+                                <td><span class="label label-info">Đang xử lý</span></td>
                             @endif
-                            @if( $request->status == 0)
+                            @if( $request->status == 0 || $request->status == 3)
                                 <td>
-                                    <button class="btn icon-btn btn-info" href="{{ route('request-manager.show',  $request->id) }}">
-                                        <span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Xem</button>
+                                    <a class="btn icon-btn btn-info" href="{{ route('request-manager.show',  $request->id) }}">
+                                        <span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Xem</a>
                                 </td>
                             @else
                                 <td><button class="btn icon-btn btn-danger cancel_request">

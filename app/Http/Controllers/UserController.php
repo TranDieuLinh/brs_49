@@ -92,12 +92,20 @@ class UserController extends Controller {
 
     public function editRequest(Request $request)
     {
-        if ($request->isMethod('post')) {
-            if ($this->updateRequest($request)) {
-                return redirect('/allrequest');
+        $re = \App\Models\Request::find($request->requestid);
+        if ($re->status == 0){
+            if ($request->isMethod('post')) {
+                if ($this->updateRequest($request)) {
+                    return redirect('/allrequest');
+                }
             }
+            return view('user.add-request');
+        }else{
+            $request->session()->flash('status', 'fail');
+            $request->session()->flash('message', 'Không thể sửa! Đã có thay đổi phía admin!');
+            return redirect('/allrequest');
         }
-        return view('user.add-request');
+
     }
 
     private function sendRequest(Request $addRequest)

@@ -6,13 +6,13 @@
         <div class="col-md-5">
             <div class="form-area">
                 {!! Form::open([
-                        'url' => '/editRequest',
+                        'url' => '/approveRequest',
                         'method' => 'post',
                     ]) !!}
                 <br style="clear:both">
-                <h3 style="margin-bottom: 25px; text-align: center;">Xử lý yêu cầu thêm sách</h3>
+                <h2 style="margin-bottom: 25px; text-align: center;">Xử lý yêu cầu thêm sách</h2>
                 <div class="form-group">
-                    <input type="hidden" class="form-control"  name="requestid" placeholder="Tên sách"  value="{{ $request->id }}" >
+                    <input type="hidden" class="form-control"  name="requestid" value="{{ $request->id }}" >
                     <input type="text" class="form-control" id="name" name="name" placeholder="Tên sách"  value="{{ $request->book_name }}" required>
                 </div>
                 <div class="form-group">
@@ -27,18 +27,27 @@
                            placeholder=" Link ảnh" required>
                 </div>
                 <div class="form-group">
-                    <select>
+                    <input type="text" class="form-control" name="publisher"
+                           placeholder="Nhà xuất bản" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="number"
+                           placeholder="Số trang" required>
+                </div>
+
+                <div class="form-group">
+                    <select name="category">
                         @foreach($categories as $category)
                             <option>{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                         <textarea class="form-control" type="textarea" id="description"
+                         <textarea class="form-control" type="textarea" name="description"
                                    placeholder="description" maxlength="140" rows="7">{{ $request->description }}</textarea>
 
                 </div>
-                <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right">Chấp nhận yêu cầu</button>
+                <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right">Thêm sách</button>
                 {!! Form::close() !!}
             </div>
         </div>
