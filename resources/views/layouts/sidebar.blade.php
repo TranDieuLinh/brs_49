@@ -24,7 +24,7 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-magic fa-fw"></i>@lang('sidebar.author')<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-pencil fa-fw"></i>@lang('sidebar.author')<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     @foreach ($author as $au)
                         <li>
@@ -50,5 +50,3 @@
     </div>
     <!-- /.sidebar-collapse -->
 </div>
-<!-- /.navbar-static-side -->
-</nav>
